@@ -7,4 +7,9 @@ public class Definition {
 		this.word = word;
 		this.definition = definition;
 	}
+
+
+	public void setDefinition(String def) {
+		this.definition = def;
+	}
 }
