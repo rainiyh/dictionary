@@ -22,6 +22,7 @@ public class Dictionary {
 		System.out.println("The CSV file content has been added to the dictionary");
 
 		String userInput = "";
+		
 		while (!userInput.equals("exit")){
 			System.out.println("Search any text, type search");
 			System.out.println("Edit any text, type: edit");
@@ -41,12 +42,10 @@ public class Dictionary {
 				//output the list
 				for (Definition d : list) {
 					System.out.println(d.word + ": " + d.definition);
-
 				}
 			}
 
 			else if (userInput.equalsIgnoreCase("edit")){
-
 				//Get the word that we will edit from the user
 				System.out.println("Which word do you want to edit the definition of: ");
 				String thisWord = myWord.nextLine();  // Read user input
@@ -57,7 +56,6 @@ public class Dictionary {
 
 				//Replace the definition
 				updateDef(thisWord, newDef);
-
 			}
 
 			else if (userInput.equalsIgnoreCase("add")){
@@ -80,9 +78,13 @@ public class Dictionary {
 				System.out.println("Which word do you want to delete from the dictionary: ");
 				String thisWord = myWord.nextLine();  // Read user input
 
-				removeDef(thisWord);
-				System.out.println("-------------------------------------------------");
-				System.out.println("System successfully deleted the word.");
+				if (removeDef(thisWord)) {
+					System.out.println("-------------------------------------------------");
+					System.out.println("System successfully deleted the word.");
+				} else {
+					System.out.println("-------------------------------------------------");
+					System.out.println("Word not found.");
+				}
 			}
 
 			else if (userInput.equalsIgnoreCase("display")){
@@ -92,13 +94,9 @@ public class Dictionary {
 				}
 				System.out.println("-------------------------------------------------");
 				System.out.println("System successfully has displayed the dictionary");
-
-
-
 			}
 
 		}
-		
 
 		// Close the scanner
 		myWord.close();
