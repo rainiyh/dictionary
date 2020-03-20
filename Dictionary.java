@@ -64,7 +64,7 @@ public class Dictionary {
 		// Return the list of all definitions that match the search
 		ArrayList<Definition> subDefinition = new ArrayList<Definition>();
 		for (int i = 0; i < dictionary.size(); i++) {
-			if (dictionary.get(i).word.matches(s)) {
+			if (dictionary.get(i).word.contains(s)) {
 				subDefinition.add(dictionary.get(i));
 			}
 		}
