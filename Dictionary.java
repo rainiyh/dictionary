@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 public class Dictionary {
@@ -64,7 +65,7 @@ public class Dictionary {
 		// Return the list of all definitions that match the search
 		ArrayList<Definition> subDefinition = new ArrayList<Definition>();
 		for (int i = 0; i < dictionary.size(); i++) {
-			if (dictionary.get(i).word.contains(s)) {
+			if (dictionary.get(i).word.toLowerCase().contains(s.toLowerCase())) {
 				subDefinition.add(dictionary.get(i));
 			}
 		}
@@ -77,7 +78,7 @@ public class Dictionary {
 		//parse a CSV file into Scanner class constructor
 		//THE table.csv text file must be in the same directory as the project, not the actual .java file
 		Scanner sc = new Scanner(new File(csv));
-		sc.useDelimiter("\n");   //sets the delimiter pattern
+		sc.useDelimiter(Pattern.compile("[\n,]"));   //sets the delimiter pattern
 
 		//Scan CSV into tokens, add everything to dictionary
 		while (sc.hasNext()) {
