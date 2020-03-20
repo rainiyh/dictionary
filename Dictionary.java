@@ -65,6 +65,7 @@ public class Dictionary {
 		// Return the list of all definitions that match the search
 		ArrayList<Definition> subDefinition = new ArrayList<Definition>();
 		for (int i = 0; i < dictionary.size(); i++) {
+			// 
 			if (dictionary.get(i).word.toLowerCase().contains(s.toLowerCase())) {
 				subDefinition.add(dictionary.get(i));
 			}
@@ -78,7 +79,8 @@ public class Dictionary {
 		//parse a CSV file into Scanner class constructor
 		//THE table.csv text file must be in the same directory as the project, not the actual .java file
 		Scanner sc = new Scanner(new File(csv));
-		sc.useDelimiter(Pattern.compile("[\n,]"));   //sets the delimiter pattern
+		// Set the delimiter pattern to either '\n' (handling the given txt file) or ',' (handling a csv)
+		sc.useDelimiter(Pattern.compile("[\n,]"));
 
 		//Scan CSV into tokens, add everything to dictionary
 		while (sc.hasNext()) {
@@ -107,8 +109,12 @@ public class Dictionary {
 	}
 	
 	// Remove definition
-	public static void removeDef(String word) {
-		dictionary.remove(findExact(word));
+	public static boolean removeDef(String word) {
+		if (findExact(word) <= 0) {
+			dictionary.remove(findExact(word));
+			return true;
+		}
+		return false;
 	}
 }
 
