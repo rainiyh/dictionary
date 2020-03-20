@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-
+// Addition for test commit
 public class Dictionary {
 
 	public static ArrayList<Definition> dictionary;
