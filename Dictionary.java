@@ -55,7 +55,15 @@ public class Dictionary {
 				String newDef = myWord.nextLine();  // Read user input
 
 				//Replace the definition
-				updateDef(thisWord, newDef);
+				if (updateDef(thisWord, newDef)) {
+					// The word was added
+					System.out.println("----------------------------------------------");
+					System.out.println("Word successfully added");
+				} else {
+					// Function returned false - word not found
+					System.out.println("----------------------------------------------");
+					System.out.println("Word not found!");
+				}
 			}
 
 			else if (userInput.equalsIgnoreCase("add")){
@@ -79,9 +87,11 @@ public class Dictionary {
 				String thisWord = myWord.nextLine();  // Read user input
 
 				if (removeDef(thisWord)) {
+					// Success
 					System.out.println("-------------------------------------------------");
 					System.out.println("System successfully deleted the word.");
 				} else {
+					// Function returned false - word not found
 					System.out.println("-------------------------------------------------");
 					System.out.println("Word not found.");
 				}
@@ -144,14 +154,14 @@ public class Dictionary {
 		sc.close();
 	}
 
-	public static void updateDef(String word, String newDef) {
+	public static boolean updateDef(String word, String newDef) {
 		// Find the index of word and replace its definition
 		if (findExact(word) >= 0) {
 			dictionary.get(findExact(word)).setDefinition(newDef);
-			System.out.println("Definition updated.");
-		} else {
-			System.out.println("Word not found in dictionary!");
+			// On success, return true
+			return true;
 		}
+		return false;
 	}
 
 	// Add definition
@@ -163,6 +173,7 @@ public class Dictionary {
 	public static boolean removeDef(String word) {
 		if (findExact(word) <= 0) {
 			dictionary.remove(findExact(word));
+			// On success, return true
 			return true;
 		}
 		return false;
